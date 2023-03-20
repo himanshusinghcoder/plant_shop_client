@@ -1,0 +1,24 @@
+.admin_layout_container{
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    min-height: 100%;
+}
+
+
+@media only screen and (max-width: 800px){
+    .admin_layout_container{
+        display: flex !important;
+        flex-direction: column;
+        min-height: 100%;
+    }   
+}
+
+.overlay{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9;
+    background-color: #000000b5;
+}

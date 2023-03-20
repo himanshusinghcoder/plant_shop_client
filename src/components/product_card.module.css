@@ -1,0 +1,125 @@
+.product-card {
+    text-decoration: none;
+    margin: 10px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    height: 250px;
+    width: 200px;
+    position: relative;
+  }
+  .product-image-container{
+    position: relative;
+    width: 100%;
+    height: 70%;
+    margin-bottom: 10px;
+  }
+
+  .product-image {
+    width: 100%;
+    height: 100%; 
+    transition: all ease-in-out 0.4s;
+  }
+
+  
+  .product-info {
+    padding: 10px;
+    font-weight: 700;
+    line-height: 1;
+    color: #282c3f;
+    margin-bottom: 6px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .price {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+
+  .product_title{
+    font-size: 1.6rem;
+    font-weight: bold;
+    line-height: 1;
+    color: #282c3f;
+    margin-bottom: 6px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .product_describtion{
+    color: #535766;
+    font-size: 1.4rem;
+    line-height: 1;
+    margin-bottom: 0;
+    margin-top: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 400;
+    display: block;
+  }
+
+  .product_price{
+    font-size: 1.4rem;
+    line-height: 15px;
+    color: #282c3f;
+    white-space: nowrap;
+}
+
+  .product-discountedPrice{
+    font-size: 14px;
+    font-weight: 700;
+    color: #282c3f;
+}
+
+.wishlist_tag{
+    position: absolute;
+    bottom: -20%;
+    left: 0;
+    z-index: -10;
+    /* visibility: hidden; */
+    width: 100%;
+    text-align: center;
+    font-size: 1.2rem;
+    letter-spacing: .1rem;
+    border: 1px solid #eee;
+    padding: 5px;
+    transition: all ease-in-out 0.5s;
+    background-color: #fff;
+    color: #000;
+    opacity: 0;
+}
+
+.wishlist_tag:hover{
+    border: 1px solid #000;
+}
+
+.product-card:hover .wishlist_tag{
+    bottom: 0;
+    z-index: 5;
+    opacity: 6;
+}
+
+.product_view{
+    bottom: 0;
+    height: 0px;
+    width: 100%;
+    position: absolute;
+    background: #0000008f;
+    opacity: 0;
+    transition: all ease-in 0.2s;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.product-card:hover .product_view{
+    opacity: 1;
+    height: 100%;
+}
+
+
+
