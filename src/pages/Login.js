@@ -80,7 +80,7 @@ function Login() {
 
     const signUpUser = async (e) => {
         e.preventDefault()
-        const result = await API_CALL(API_METHODS.POST,REGISTER,{...userDetails, access_level: 20},null,true)
+        const result = await API_CALL(API_METHODS.POST,REGISTER,{...userDetails, access_level: 20},null)
         if(result.data.status === 'success'){
             await loginUser()
         }

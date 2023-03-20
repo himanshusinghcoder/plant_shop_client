@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Input from '../../components/Input'
 import { useSelector } from 'react-redux'
-import axios from 'axios'
 import { USER } from '../../constant/endpoint'
 import { useParams } from 'react-router-dom'
 import Swal from 'sweetalert2'
@@ -23,47 +22,36 @@ function AdminUser() {
     }
     const addUser = async (e) => {
         e.preventDefault()
-        if(isValidate()){
-           await addOrUpdateUser()
+        if (isValidate()) {
+            await addOrUpdateUser()
         }
-        
+
     }
 
 
     const addOrUpdateUser = async () => {
-        if(isEmpty(userDetails.password)){
+        if (isEmpty(userDetails.password)) {
             delete userDetails.password
         }
-        try {
-            if(!isEmpty(user_id)){
-               await API_CALL(API_METHODS.PATCH, `${USER}/${user_id}`, {...userDetails, access_level: Number(userDetails.access_level)}, user.token)
-            }else{
-                await axios.post(USER, { ...userDetails, access_level: Number(userDetails.access_level) })
+        if (!isEmpty(user_id)) {
+            const result = await API_CALL(API_METHODS.PATCH, `${USER}/${user_id}`, { ...userDetails, access_level: Number(userDetails.access_level) }, user.token, true)
+            if (result.data.status === 'success') {
+                window.location.reload()
             }
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'user successfully created or modify',
-                showConfirmButton: false,
-                timer: 1500
-            })
-            window.location.reload()
-        } catch (error) {
-            Swal.fire({
-                position: 'top-end',
-                icon: 'error',
-                title: error.response.data.error,
-                showConfirmButton: false,
-                timer: 1500
-            })
+        } else {
+            const result = await API_CALL(API_METHODS.POST, `${USER}`, { ...userDetails, access_level: Number(userDetails.access_level) }, user.token, true)
+            if (result.data.status === 'success') {
+                window.location.reload()
+            }
         }
     }
-    const getUserData =  async () => {
+    const getUserData = async () => {
         const res = await API_CALL(API_METHODS.GET, `${USER}/${user_id}`, {}, user.token)
-        if(res.data.status === 'success'){
+        if (res.data.status === 'success') {
             setUserDetails({
-                ...res.data.data,
-                access_level: `${res.data.data.access_level}`
+                access_level: `${res.data.data.access_level}`,
+                address: res.data.data.address,
+                username: res.data.data.username,
             })
         }
     }
@@ -81,17 +69,17 @@ function AdminUser() {
                     showConfirmButton: false,
                     timer: 1500
                 })
-                return validate    
+                return validate
             }
         }
-       return validate
+        return validate
     }
 
     useEffect(() => {
-        if(!isEmpty(user_id)){
+        if (!isEmpty(user_id)) {
             getUserData()
         }
-    },[])
+    }, [])
     return (
         <div className='d-flex flex-column align-items-center'>
             <h1 className='text-center mt-5 fs-2'>{user_id ? 'Edit' : 'Add'} User</h1>
