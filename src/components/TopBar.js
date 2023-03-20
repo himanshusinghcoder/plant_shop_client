@@ -22,7 +22,7 @@ function TopBar() {
   return (
     <div className={Styles.header}>
       <div className={Styles.logo_box}>
-        {!window.location.href.includes('/admin') && <Link className={Styles.link} to='/home'><img src='/leaf-logo.png' alt='....' width={100} /></Link>}
+        {!window.location.href.includes('/admin') && <Link className={Styles.link} to='/home'><img src='/leaf-logo.png' alt='....' width={100} loading='lazy' /></Link>}
         {window.location.href.includes('/admin') && <AiOutlineMenu className={Styles.menu_icon} size={35} onClick={() => dispatch(setSideBarOpen())} />}
       </div>
       <div>

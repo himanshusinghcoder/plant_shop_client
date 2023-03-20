@@ -138,7 +138,7 @@ function AdminProduct() {
             </form>
                 {!isEmpty(product_id) &&
                     <div className='text-center mb-3'>
-                        {productDetails?.image?.map(data => <div style={{position: 'relative', display: 'inline', width: 100, margin: '1rem'}}> <img key={data} height={100} width={100} src={`${process.env.REACT_APP_SUPABASE_URL}${process.env.REACT_APP_IMAGE_PATH}/${data}`} alt='' >
+                        {productDetails?.image?.map(data => <div style={{position: 'relative', display: 'inline', width: 100, margin: '1rem'}}> <img loading='lazy' key={data} height={100} width={100} src={`${process.env.REACT_APP_SUPABASE_URL}${process.env.REACT_APP_IMAGE_PATH}/${data}`} alt='' >
                         </img>
                         <AiFillDelete style={{position: 'absolute', zIndex: 2, right: 5, cursor: 'pointer'}} color='red' size={20} onClick={() => deleteImages(data)}></AiFillDelete>
                         </div>)}

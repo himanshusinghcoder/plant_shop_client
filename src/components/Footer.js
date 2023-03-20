@@ -4,7 +4,7 @@ function Footer() {
     return (
         <div style={{ height: 200, background: '#000000d4', gridTemplateColumns: '1fr 1fr 1fr', display: 'grid', color: '#ffffff',justifyItems: 'center' }}>
             <div> 
-                <img src='/leaf-logo.png' alt='....' width={100} /> 
+                <img src='/leaf-logo.png' alt='....' width={100} loading='lazy' /> 
                 <h2 style={{textAlign: 'center'}}>Nature Life</h2>    
             </div>
             <div>

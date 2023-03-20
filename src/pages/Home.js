@@ -9,9 +9,9 @@ import { setAllProducts } from '../redux/productSlice'
 function Home() {
   const allProduct = useSelector(state => state.product.allProducts)
   const dispatch = useDispatch()
-  
+
   useEffect(() => {
-    if(isEmpty(allProduct)){
+    if (isEmpty(allProduct)) {
       getAllProducts(dispatch, setAllProducts)
 
     }
@@ -19,11 +19,19 @@ function Home() {
 
   return (
     <div>
-        <Coursel />
-        <ProductTypes type={'All'}  products={allProduct} link={'/products'}/>
-        <ProductTypes type={'Featured'}  products={allProduct.filter(data => data?.is_featured)}/>
-        <ProductTypes type={'Trending'}  products={allProduct.filter(data => data?.is_trending)}/>
-        <ProductTypes type={'Newly Arrived'}  products={allProduct.slice(0,4)}/>
+      <Coursel />
+      {!isEmpty(allProduct) &&
+        <ProductTypes type={'All'} products={allProduct} link={'/products'} />
+      }
+      {!isEmpty(allProduct.filter(data => data?.is_featured)) &&
+        <ProductTypes type={'Featured'} products={allProduct.filter(data => data?.is_featured)} />
+      }
+      {!isEmpty(allProduct.filter(data => data?.is_trending)) &&
+        <ProductTypes type={'Trending'} products={allProduct.filter(data => data?.is_trending)} />
+      }
+      {!isEmpty(allProduct) &&
+        <ProductTypes type={'Newly Arrived'} products={allProduct.slice(0, 4)} />
+      }
     </div>
   )
 }

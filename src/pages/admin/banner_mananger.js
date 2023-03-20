@@ -94,7 +94,7 @@ function BannerManger() {
       </form>
       {!isEmpty(images) &&
       <div style={{ textAlign: 'center', margin: '1rem', width: '100%' }}>
-        {images?.map(data => <div style={{ position: 'relative', display: 'inline', width: 100, margin: '1rem' }}> <img key={data} height={100} width={100} src={`${process.env.REACT_APP_SUPABASE_URL}${process.env.REACT_APP_IMAGE_PATH}/${data}`} alt='' >
+        {images?.map(data => <div style={{ position: 'relative', display: 'inline', width: 100, margin: '1rem' }}> <img loading='lazy' key={data} height={100} width={100} src={`${process.env.REACT_APP_SUPABASE_URL}${process.env.REACT_APP_IMAGE_PATH}/${data}`} alt='' >
         </img>
           <AiFillDelete style={{ position: 'absolute', zIndex: 2, right: 5, cursor: 'pointer' }} color='red' size={20} onClick={() => deleteImages(data)}></AiFillDelete>
         </div>)}

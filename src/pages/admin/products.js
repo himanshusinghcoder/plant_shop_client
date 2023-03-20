@@ -58,7 +58,7 @@ function Products() {
                         {state.allProducts?.map((data, i) => <tr key={i}>
                             <td>{i + 1}</td>
                             <td>{data._id}</td>
-                            <td><img src={`${process.env.REACT_APP_SUPABASE_URL}${process.env.REACT_APP_IMAGE_PATH}/${data.image[0]}`} alt={data.name} height={50} width={60} /></td>
+                            <td><img loading='lazy' src={`${process.env.REACT_APP_SUPABASE_URL}${process.env.REACT_APP_IMAGE_PATH}/${data.image[0]}`} alt={data.name} height={50} width={60} /></td>
                             <td>{data.name}</td>
                             <td><button className={`btn btn-md w-100 ${data.is_featured ? 'btn-danger' : 'btn-success'}`} onClick={() => addProductToCategory(data._id, !data.is_featured, 'is_featured')}>{data.is_featured ? 'Remove' : 'Add'}</button></td>
                             <td><button className={`btn btn-md w-100 ${data.is_trending ? 'btn-danger' : 'btn-success'}`} onClick={() => addProductToCategory(data._id, !data.is_trending, 'is_trending')}>{data.is_trending ? 'Remove' : 'Add'}</button></td>

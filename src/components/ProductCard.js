@@ -25,7 +25,7 @@ const ProductCard = ({ data }) => {
   return (
     <div className={Styles["product-card"]}>
         <div className={Styles["product-image-container"]}>
-          <img className={Styles["product-image"]} src={process.env.REACT_APP_SUPABASE_URL + process.env.REACT_APP_IMAGE_PATH + '/' + data.image[0]} alt={data.name} />
+          <img className={Styles["product-image"]} src={process.env.REACT_APP_SUPABASE_URL + process.env.REACT_APP_IMAGE_PATH + '/' + data.image[0]} alt={data.name} loading='lazy' />
         </div>
         <div className={Styles["product-info"]}>
           <h3 className={Styles["product_title"]}>{data.name}</h3>

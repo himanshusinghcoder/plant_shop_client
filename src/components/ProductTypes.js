@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom'
 
 function ProductTypes({ type, products, link }) {
     return (
-        <div>
-            <h2 style={{marginLeft: '3rem'}}>{type} Products</h2>
+        <div className='mt-2'>
+            <h2 className='ms-4 bg-success bg-gradient text-light p-3'>{type} Products</h2>
             <div className={Styles.products_list}>
                 {products.map(data => <ProductCard data={data} />)}
                 {type === 'All' &&

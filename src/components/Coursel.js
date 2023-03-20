@@ -29,6 +29,7 @@ function Coursel() {
           src={`${process.env.REACT_APP_SUPABASE_URL}${process.env.REACT_APP_IMAGE_PATH}/${data}`}
           alt="First slide"
           height={'500px'}
+          loading='lazy'
         />
       </Carousel.Item>
       })}

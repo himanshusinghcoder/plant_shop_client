@@ -45,7 +45,7 @@ function Orders() {
                         <>
                             {product?.products?.map(data => {
                                 return <tr key={data._id}>
-                                    <td><Link to={`/product/${data._id}`}><img height={100} width={100} src={`${process.env.REACT_APP_SUPABASE_URL}${process.env.REACT_APP_IMAGE_PATH}/${data?.image}`} alt={data?.name} /></Link></td>
+                                    <td><Link to={`/product/${data._id}`}><img loading='lazy' height={100} width={100} src={`${process.env.REACT_APP_SUPABASE_URL}${process.env.REACT_APP_IMAGE_PATH}/${data?.image}`} alt={data?.name} /></Link></td>
                                     <td className='fs-5'>{data?.name}</td>
                                     <td className='fs-5'>{data?.quantity}</td>
                                     <td className='fs-5'>Rs {data?.price}</td>

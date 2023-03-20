@@ -90,14 +90,14 @@ function Product() {
                 <img src={`${process.env.REACT_APP_SUPABASE_URL}${process.env.REACT_APP_IMAGE_PATH}/${image}`} alt='' />
             </div>
             <div>
-                {productDeatils?.image?.map(data => <img key={data} style={{ margin: '1rem' }} onClick={() => setImage(data)} src={`${process.env.REACT_APP_SUPABASE_URL}${process.env.REACT_APP_IMAGE_PATH}/${data}`} alt='' width={100} height={100} />)}
+                {productDeatils?.image?.map(data => <img key={data} style={{ margin: '1rem' }} onClick={() => setImage(data)} src={`${process.env.REACT_APP_SUPABASE_URL}${process.env.REACT_APP_IMAGE_PATH}/${data}`} alt='' width={100} height={100} loading='lazy' />)}
             </div>
             <div className={Styles.description}>
                 <h2>{productDeatils.name}</h2>
                 <h3 className='fw-light'>{productDeatils.description}</h3>
                 <h1>${productDeatils.price}</h1>
-                <button onClick={addToCart}>Add to Cart</button>
-                {!isEmpty(user) && <button style={{background: user.wishlist.includes(product_id) && 'red', color: user.wishlist.includes(product_id) && '#fff'}} onClick={() => addToWishList(product_id, user.wishlist.includes(product_id))}>Wishlist</button>}
+                {productDeatils.quantity ? <button onClick={addToCart} className='btn btn-outline-success'>Add to Cart</button> : <button disabled className='btn btn-secondary'>Out of Stock</button>}
+                {!isEmpty(user) && <button onClick={() => addToWishList(product_id, user.wishlist.includes(product_id))} className={!user.wishlist.includes(product_id) ? 'btn btn-outline-danger' : 'btn btn-danger'}>Wishlist</button>}
             </div>
         </div>
     )

@@ -30,7 +30,7 @@ function Sidebar() {
   return (
     <div className={Styles.side_bar}  style={{left: isSideBar && 0}}>
       <div>
-        <Link to='/home'><img src='/leaf-logo.png' alt='....' width={100} /></Link>
+        <Link to='/home'><img src='/leaf-logo.png' alt='....' width={100} loading='lazy' /></Link>
       </div>
       {NAV_LINKS.map(data => 
       <NavLink className={({ isActive }) => (isActive ? Styles.active_nav_link : Styles.nav_link)} to={data.path} key={data.id}>{data.name}</NavLink>
