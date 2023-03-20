@@ -80,9 +80,11 @@ function Product() {
       }
 
 
-    useEffect(() => {   
-        getProductInfo()
-    },[])
+    useEffect(() => { 
+        if(isEmpty(productDeatils)){
+            getProductInfo()
+        }  
+    })
 
     return (
         <div className={Styles.card}>

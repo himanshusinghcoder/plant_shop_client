@@ -4,6 +4,7 @@ import { API_CALL } from '../helper';
 import { API_METHODS } from '../constant';
 import { BANNER } from '../constant/endpoint';
 import { useSelector } from 'react-redux';
+import { isEmpty } from 'lodash';
 
 function Coursel() {
   const user = useSelector(state => state.user.userData)
@@ -13,13 +14,17 @@ function Coursel() {
   const getBannerImages = async () => {
     const result = await API_CALL(API_METHODS.GET, BANNER, {}, user.token)
     if (result.data.status === 'success') {
-      setImages(result.data.data.banner)
+      if(!isEmpty(result.data.data.banner)){
+        setImages(result.data.data.banner)
+      }
     }
   }
 
   useEffect(() => {
-    getBannerImages()
-  },[])
+    if(isEmpty(images)){
+      getBannerImages()
+    }
+  })
   return (
     <Carousel indicators={false}>
       {images.map(data => {

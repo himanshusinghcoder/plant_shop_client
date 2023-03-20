@@ -76,10 +76,10 @@ function AdminUser() {
     }
 
     useEffect(() => {
-        if (!isEmpty(user_id)) {
+        if (!isEmpty(user_id) && isEmpty(userDetails.username)) {
             getUserData()
         }
-    }, [])
+    })
     return (
         <div className='d-flex flex-column align-items-center'>
             <h1 className='text-center mt-5 fs-2'>{user_id ? 'Edit' : 'Add'} User</h1>
