@@ -25,7 +25,7 @@ function Login() {
     }
 
     const loginUser = async (e) => {
-        if(e){
+        if (e) {
             e.preventDefault()
         }
         try {
@@ -39,12 +39,14 @@ function Login() {
                     setTimeout(() => {
                         dispatch(setUserData(data))
                         dispatch(emptyCart())
-                    },500)
+                    }, 500)
                     navigate('/home')
                 } else {
                     const data = { ...result.data.data }
+                    const oldCartIds = []
                     const newCartData = data.cart.map(data => {
-                        const existProduct = cart.find(oldCart => oldCart._id === data._id)
+                        oldCartIds.push(data._id)
+                        const existProduct = !isEmpty(cart) && cart.find(oldCart => oldCart._id === data._id)
                         if (!isEmpty(existProduct)) {
                             return {
                                 ...data,
@@ -57,12 +59,13 @@ function Login() {
                             return data
                         }
                     })
-                    data.cart = newCartData
+                    const oldCart = cart.filter(data => !oldCartIds.includes(data._id))
+                    data.cart = [...newCartData, ...oldCart]
                     await API_CALL(API_METHODS.PATCH, `${USER}/${data.id}`, { user_cart: data.cart }, data.token)
                     setTimeout(() => {
                         dispatch(setUserData(data))
                         dispatch(emptyCart())
-                    },500)
+                    }, 500)
                     navigate('/home')
                 }
             }
@@ -80,8 +83,8 @@ function Login() {
 
     const signUpUser = async (e) => {
         e.preventDefault()
-        const result = await API_CALL(API_METHODS.POST,REGISTER,{...userDetails, access_level: 20},null)
-        if(result.data.status === 'success'){
+        const result = await API_CALL(API_METHODS.POST, REGISTER, { ...userDetails, access_level: 20 }, null)
+        if (result.data.status === 'success') {
             await loginUser()
         }
     }
